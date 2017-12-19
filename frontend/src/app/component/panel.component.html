@@ -1,0 +1,38 @@
+<div *ngIf="panel">
+    <h1 *ngIf="panel.headline">{{panel.headline}}</h1>
+    <div *ngIf="panel.type == 'TEXT'" class="discooze-panel discooze-panel-text lead">{{panel.content}}</div>
+    <div *ngIf="panel.type == 'HTML'" [innerHTML]="panel.content" class="discooze-panel discooze-panel-html lead"></div>
+    <div *ngIf="panel.type == 'IMAGE'" class="discooze-panel discooze-panel-image"><img [src]="panel.content" /></div>
+    <div *ngIf="panel.type == 'YOUTUBE'" class="discooze-panel discooze-panel-youtube">
+        <iframe id="ytplayer" type="text/html" width="640" height="360" [src]="panel.content" frameborder="0"></iframe>
+    </div>
+    <div *ngIf="panel.footer" class="discooze-panel-footer">{{panel.footer}}</div>
+    <div class="discooze-panel-comments">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Your comment</h4>
+                <form (ngSubmit)="submit()" #form="ngForm">
+                    <div class="form-group">
+                        <textarea class="form-control" name="text" id="text" required="required" [(ngModel)]="comment.text" autofocus="autofocus"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">@</div>
+                            <input type="text" id="username" name="username" placeholder="Username" class="form-control" [(ngModel)]="comment.author.username" required="required" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="card" *ngFor="let comment of comments">
+            <div class="card-body">
+                <h4 class="card-title">{{comment.author.displayName}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{comment.created}}</h6>
+                <p class="card-text">{{comment.text}}</p>
+            </div>
+        </div>
+    </div>
+<div *ngIf="errorLoading">
+    Could not resolve requested panel.
+</div>

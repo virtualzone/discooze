@@ -1,0 +1,14 @@
+frontend/node_modules/
+.tscache/
+.vscode/
+*.tmp.*
+dist/
+**/.baseDir.js
+**/.baseDir.ts
+package-lock.json
+.idea/
+target/
+.project
+.settings/
+.classpath
+*.iml

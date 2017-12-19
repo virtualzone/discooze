@@ -1,0 +1,52 @@
+{
+  "name": "discooze-frontend",
+  "version": "1.0.0",
+  "description": "Angular-based web frontend for the Discooze platform.",
+  "main": "index.js",
+  "scripts": {
+    "serve": "lite-server -c=bs-config.json",
+    "start": "npm run css && concurrently \"npm run build:watch\" \"npm run serve\"",
+    "build:watch": "tsc -p src/ -w",
+    "css": "grunt css",
+    "clean": "rm -rf dist/",
+    "grunt": "grunt",
+    "webpack": "webpack --config webpack.prod.js --progress --profile --bail",
+    "build": "npm run grunt && npm run webpack && cp src/index.prod.html dist/index.html"
+  },
+  "author": "weweave GbR <mail@weweave.net>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@angular/common": "^5.1.1",
+    "@angular/compiler": "^5.1.1",
+    "@angular/core": "^5.1.1",
+    "@angular/forms": "^5.1.1",
+    "@angular/http": "^5.1.1",
+    "@angular/platform-browser": "^5.1.1",
+    "@angular/platform-browser-dynamic": "^5.1.1",
+    "@angular/router": "^5.1.1",
+    "bootstrap": "^4.0.0-beta.2",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.5",
+    "systemjs": "^0.20.19",
+    "zone.js": "^0.8.18"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.1",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.4.1",
+    "babili-webpack-plugin": "^0.1.2",
+    "concurrently": "^3.5.1",
+    "grunt": "^1.0.1",
+    "grunt-bootlint": "^0.10.2",
+    "grunt-cli": "^1.2.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.17",
+    "grunt-tslint": "^5.0.1",
+    "lite-server": "^2.3.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}

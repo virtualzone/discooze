@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:h2:/tmp/discooze
+
+jwt:
+  header: Authorization
+  prefix: Bearer
+  secret: bLFAxAFuVczLghCbUb8JfbRq
+  expiration: 604800

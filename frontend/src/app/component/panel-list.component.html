@@ -1,0 +1,23 @@
+<div class="page-header">
+    <div class="btn-toolbar pull-right">
+        <a routerLink="/_admin/panels/new" class="btn btn-primary btn-lg" title="Add new">Add</a>
+    </div>
+    <h1>Panels</h1>
+</div>
+<table class="table table-hover" [hidden]="!entities || !entities.length">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let panel of entities" class="clickable" (click)="showEntity(panel.id)">
+            <td>{{panel.title}}</td>
+            <td>{{panel.url}}</td>
+        </tr>
+    </tbody>
+</table>
+<p [hidden]="!entities ||entities.length">
+    No records found.
+</p>

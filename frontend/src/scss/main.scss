@@ -1,0 +1,38 @@
+body, html {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    padding-top: 5rem;
+}
+
+h1 {
+    font-weight: 400;
+    padding-bottom: 1rem;
+}
+
+.discooze-panel-footer {
+    padding-top: 2rem;
+}
+
+.discooze-panel-text {
+    white-space: pre-wrap;
+}
+
+.discooze-panel-comments {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    .card-text {
+        white-space: pre-wrap;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+}

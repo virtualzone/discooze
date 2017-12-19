@@ -1,0 +1,10 @@
+curl -X GET http://localhost:8080/panels
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"title\" : \"Panel 1\",  \"url\" : \"/panel1\" }" http://localhost:8080/panels
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"title\" : \"Panel 2\",  \"url\" : \"/panel2\" }" http://localhost:8080/panels
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"title\" : \"Panel 3\",  \"url\" : \"/panel3\",  \"homePanel\" : true }" http://localhost:8080/panels
+curl -X GET http://localhost:8080/panels
+curl -X GET http://localhost:8080/panels/search/homePanel
+
+
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"username\" : \"admin\",  \"password\" : \"admin\" }" http://localhost:8080/auth/login
+curl -i -X POST -H "Content-Type:application/json" -d "{  \"username\" : \"admin\",  \"password\" : \"admin2\" }" http://localhost:8080/auth/login
