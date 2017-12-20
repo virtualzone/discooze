@@ -1,3 +1,4 @@
+import "core-js/client/shim.min.js";
 import "jquery/dist/jquery.slim";
 import "popper.js/dist/umd/popper.min.js";
 import "bootstrap";
