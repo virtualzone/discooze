@@ -8,7 +8,7 @@ spring:
   jpa:
     generate-ddl: true
   datasource:
-    url: jdbc:postgresql://localhost/discooze
+    url: jdbc:postgresql://postgres/discooze
     username: postgres
     password: root
 
