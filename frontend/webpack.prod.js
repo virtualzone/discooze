@@ -8,10 +8,7 @@ module.exports = {
         app: './src/app/main.ts'
     },
     resolve: {
-        extensions: ['.ts', '.js'],
-        alias: {
-            'bloodhound': 'typeahead.js/dist/bloodhound.min.js'
-        }
+        extensions: ['.ts', '.js']
     },
     module: {
         rules: [
@@ -35,18 +32,13 @@ module.exports = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery"
+            jQuery: "jquery",
+            Popper: "popper.js"
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'polyfills']
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new BabiliPlugin()
-        /*
-        new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
-            mangle: {
-                keep_fnames: true
-            }
-        })*/
     ]
 };

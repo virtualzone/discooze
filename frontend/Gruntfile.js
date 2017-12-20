@@ -18,7 +18,9 @@ module.exports = function(grunt) {
                     'E001', // missing a DOCTYPE declaration
                     'W001', // missing UTF-8
                     'W002', // missing X-UA-Compatible
-                    'W003' // missing viewport
+                    'W003', // missing viewport,
+                    'E042', // form-control Boostrap 4
+                    'E044'  // input-group Boostrap 4
                 ]
             },
             files: [

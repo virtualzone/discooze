@@ -1,7 +1,10 @@
 server:
-  contextPath: /api
+  contextPath: /
 
 spring:
+  data:
+    rest:
+      basePath: /api
   jpa:
     generate-ddl: true
   datasource:

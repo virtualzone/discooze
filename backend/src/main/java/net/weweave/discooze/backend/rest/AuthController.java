@@ -43,7 +43,7 @@ public class AuthController {
      * @param body
      * @return
      */
-    @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(@RequestBody JwtAuthenticationRequest body) {
         User user = this.userRepository.findByUsername(body.getUsername());
         if (user == null) {

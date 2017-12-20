@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     { path: ":u1/:u2/:u3", component: PanelComponent },
     { path: ":u1/:u2/:u3/:u4", component: PanelComponent },
     { path: ":u1/:u2/:u3/:u4/:u5", component: PanelComponent },
-    
+
     {
         path: "",
         component: PanelComponent,

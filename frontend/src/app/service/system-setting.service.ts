@@ -19,7 +19,8 @@ export class SystemSettingService {
             .get(this.httpService.getUrl("systemSettings"), this.httpService.getOptions())
             .toPromise()
             .then(res => {
-                let list: SystemSetting[] = (<SystemSetting[]>res.json()._embedded["systemSettings"]).map(o => new SystemSetting().deserialize(o));
+                let list: SystemSetting[] = (<SystemSetting[]>res.json()._embedded["systemSettings"])
+                    .map(o => new SystemSetting().deserialize(o));
                 resolve(list);
             })
             .catch(error => reject(this.httpService.handleError(error)));

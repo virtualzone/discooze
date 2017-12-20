@@ -28,7 +28,7 @@ public class AttachmentController extends BaseController {
     private AttachmentRepository attachmentRepository;
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(value = "/attachments/set/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/attachments/set/{id}", method = RequestMethod.POST)
     public ResponseEntity<String> setAttachment(@PathVariable("id") String id,
                                                 @RequestParam("file") MultipartFile file,
                                                 Principal principal) throws IOException {
@@ -60,7 +60,7 @@ public class AttachmentController extends BaseController {
     }
 
     @Transactional
-    @RequestMapping(value = "/attachments/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/attachments/get/{id}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getAttachment(@PathVariable("id") String id) {
         Attachment attachment = this.attachmentRepository.findByCommentId(UUID.fromString(id));
         if (attachment == null) {

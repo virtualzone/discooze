@@ -85,11 +85,11 @@ export class PanelComponent implements OnInit {
                 if (this.file) {
                     this.commentService.uploadAttachment(this.file, comment.id)
                         .then(attachmentId => {
-                            this.loadComments()
+                            this.loadComments();
                             this.success = true;
                         });
                 } else {
-                    this.loadComments()
+                    this.loadComments();
                     this.success = true;
                 }
             });
@@ -98,7 +98,7 @@ export class PanelComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
             let url: string = "";
-            for (let i=0; i<=5; i++) {
+            for (let i = 0; i <= 5; i++) {
                 if (params["u" + i]) {
                     url += "/" + params["u" + i];
                 }

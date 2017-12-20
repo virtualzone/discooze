@@ -6,7 +6,4 @@ import { Component, Input, OnInit } from "@angular/core";
     ]
 })
 export class AdminComponent {
-
-    constructor() {
-    }
 }

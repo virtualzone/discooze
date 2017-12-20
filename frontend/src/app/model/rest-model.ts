@@ -23,7 +23,7 @@ export abstract class RestModel<T> {
         if (input && input._links && input._links.self) {
             let href: string = input._links.self.href;
             if (href && href.indexOf("/") < href.length) {
-                return href.substr(href.lastIndexOf("/")+1);
+                return href.substr(href.lastIndexOf("/") + 1);
             }
         }
         return undefined;

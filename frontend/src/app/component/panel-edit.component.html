@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-sm">
+    <div class="col-md-8">
         <h1 [hidden]="entity.id">Add Panel</h1>
         <h1 [hidden]="!entity.id">Edit Panel</h1>
     </div>
-    <div class="col-sm">
-            <a routerLink="/_admin/panels" class="btn btn-secondary">List</a>
-            <a routerLink="/_admin" class="btn btn-secondary">Admin</a>
+    <div class="col-md-4">
+        <a routerLink="/_admin/panels" class="btn btn-secondary">List</a>
+        <a routerLink="/_admin" class="btn btn-secondary">Admin</a>
     </div>
 </div>
 <form (ngSubmit)="submit()" #form="ngForm">

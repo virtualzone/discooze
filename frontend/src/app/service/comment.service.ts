@@ -59,7 +59,7 @@ export class CommentService extends CrudService<Comment> {
 
     public uploadAttachment(file: File, commentId: string): Promise<string> {
         let formData: FormData = new FormData();
-        formData.append('file', file, file.name);
+        formData.append("file", file, file.name);
         let headers: Headers = this.httpService.getHeaders();
         headers.delete("Content-Type");
         let options = {headers: headers};

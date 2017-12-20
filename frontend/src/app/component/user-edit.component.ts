@@ -37,7 +37,7 @@ export class UserEditComponent extends EntityEditComponent<User> {
     }
 
     protected onEntitiySaved(): Promise<void> {
-        if (this.entity.loginType == 'PASSWORD' && this.changePassword) {
+        if (this.entity.loginType === "PASSWORD" && this.changePassword) {
             return this.userService.setPassword(this.entity.id, this.password);
         } else {
             return super.onEntitiySaved();

@@ -34,7 +34,7 @@ export class SettingsComponent implements OnInit {
         this.success = false;
         let settings: SystemSetting[] = [];
         let promises: Promise<SystemSetting>[] = [];
-        for (let key in this.settings) {
+        for (let key of Object.keys(this.settings)) {
             let value: string = this.settings[key];
             let setting: SystemSetting = new SystemSetting();
             setting.key = key;
