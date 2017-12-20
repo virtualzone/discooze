@@ -28,6 +28,11 @@ export abstract class EntityEditComponent<T extends RestModel<T>> implements OnI
         // Overwrite this in child classes if necessary
     }
 
+    protected onEntitiySaved(): Promise<void> {
+        // Overwrite this in child classes if necessary
+        return new Promise((resolve, reject) => resolve());
+    }
+
     ngOnInit(): void {
         this.route.params.forEach((params: Params) => {
             let uuid: string = params["id"];
@@ -53,8 +58,10 @@ export abstract class EntityEditComponent<T extends RestModel<T>> implements OnI
         this.crudService.save(this.entity)
             .then(entity => {
                 this.entity = entity;
-                this.submitting = false;
-                this.success = true;
+                this.onEntitiySaved().then(() => {
+                    this.submitting = false;
+                    this.success = true;
+                });
             }).catch(e => {
                 this.submitting = false;
                 this.success = false;

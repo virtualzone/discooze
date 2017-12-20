@@ -1,12 +1,14 @@
 package net.weweave.discooze.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="`user`")
 public class User extends AbstractPersistentObject {
     @NotNull
     @Column(nullable = false, unique = true)

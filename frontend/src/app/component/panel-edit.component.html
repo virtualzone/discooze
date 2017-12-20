@@ -1,11 +1,12 @@
-<div class="page-header">
-    <div class="btn-toolbar pull-right">
-        <button type="button" class="btn btn-danger btn-lg" (click)="delete()" [hidden]="!entity.uuid" title="Delete"><span class="glyphicon glyphicon-remove"></span></button>
-        <a routerLink="/_admin/panels" class="btn btn-primary btn-lg" title="Show all">List</a>
-        <a routerLink="/_admin/brokers/new" class="btn btn-primary btn-lg" [hidden]="!entity.uuid" title="Add new">Add</a>
+<div class="row">
+    <div class="col-sm">
+        <h1 [hidden]="entity.id">Add Panel</h1>
+        <h1 [hidden]="!entity.id">Edit Panel</h1>
     </div>
-    <h1 [hidden]="entity.uuid">Add Broker</h1>
-    <h1 [hidden]="!entity.uuid">Edit Broker</h1>
+    <div class="col-sm">
+            <a routerLink="/_admin/panels" class="btn btn-secondary">List</a>
+            <a routerLink="/_admin" class="btn btn-secondary">Admin</a>
+    </div>
 </div>
 <form (ngSubmit)="submit()" #form="ngForm">
     <div class="alert alert-success" role="alert" [hidden]="!success">Panel saved successfully.</div>
@@ -39,6 +40,5 @@
         <label for="footer">Footer (optional)</label>
         <input type="text" id="footer" name="footer" placeholder="Footer" class="form-control" [(ngModel)]="entity.footer" />
     </div>
-    <a routerLink="/_admin/panels" class="btn btn-default">Cancel</a>
-    <button type="submit" class="btn btn-default" [disabled]="!form.valid || submitting"><span class="glyphicon glyphicon-ok"></span> Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid || submitting"><span class="glyphicon glyphicon-ok"></span> Save</button>
 </form>

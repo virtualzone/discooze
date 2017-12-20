@@ -77,17 +77,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         HttpMethod.GET,
                         "/",
                         "/auth/**",
+                        "/users/search/me",
                         "/panels",
                         "/panels/**",
+                        "/comments",
+                        "/comments/**",
                         "/*.html",
                         "/**/*.html",
                         "/**/*.js",
                         "/**/*.css"
                 ).permitAll()
                 .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/panels", "/panels/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers(HttpMethod.PUT, "/panels", "/panels/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers(HttpMethod.DELETE, "/panels", "/panels/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.POST, "/comments/publish").authenticated()
+
+                .antMatchers(HttpMethod.POST, "/panels").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.PUT, "/panels/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.PATCH, "/panels/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers(HttpMethod.DELETE, "/panels/**").access("hasRole('ROLE_ADMIN')")
+
+                .antMatchers("/comments", "/comments/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/systemSettings", "/systemSettings/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/users", "/users/**").access("hasRole('ROLE_ADMIN')")
+
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
         httpSecurity.headers().cacheControl();

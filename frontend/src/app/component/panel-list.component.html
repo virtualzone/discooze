@@ -1,8 +1,9 @@
-<div class="page-header">
-    <div class="btn-toolbar pull-right">
-        <a routerLink="/_admin/panels/new" class="btn btn-primary btn-lg" title="Add new">Add</a>
+<div class="row">
+    <div class="col-sm"><h1>Panels</h1></div>
+    <div class="col-sm">
+            <a routerLink="/_admin/panels/new" class="btn btn-secondary">New</a>
+            <a routerLink="/_admin" class="btn btn-secondary">Admin</a>
     </div>
-    <h1>Panels</h1>
 </div>
 <table class="table table-hover" [hidden]="!entities || !entities.length">
     <thead>

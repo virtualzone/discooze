@@ -39,4 +39,31 @@ export class UserService extends CrudService<User> {
             .catch(error => reject(this.httpService.handleError(error)));
         });
     }
+
+    public getMe(): Promise<User> {
+        return new Promise((resolve, reject) => {
+            this.http
+            .get(this.httpService.getUrl(this.getPath() + "/search/me"), this.httpService.getOptions())
+            .toPromise()
+            .then(res => {
+                let entity = this.newTypeInstance().deserialize(<User>res.json());
+                resolve(entity);
+            })
+            .catch(error => reject(this.httpService.handleError(error)));
+        });
+    }
+
+    public setPassword(userId: string, password: string): Promise<void> {
+        let payload: any = {
+            password: password
+        };
+        return this.http.put(this.httpService.getUrl("users/setPassword/" + userId), payload, this.httpService.getOptions())
+                .toPromise()
+                .then(res => {
+                    return;
+                })
+                .catch(error => {
+                    throw this.httpService.handleError(error);
+                });
+    }
 }

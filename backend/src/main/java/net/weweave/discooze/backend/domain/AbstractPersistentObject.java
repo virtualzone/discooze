@@ -16,7 +16,6 @@ public abstract class AbstractPersistentObject implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
     @CreatedDate

@@ -27,7 +27,7 @@ export class LoginComponent {
         this.submitting = true;
         this.authService.login(this.model.username, this.model.password)
             .then(res => {
-                this.router.navigate(["/_admin/panels"]);
+                this.router.navigate(["/_admin"]);
             })
             .catch(res => {
                 this.loginError = true;

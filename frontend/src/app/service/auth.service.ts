@@ -7,6 +7,7 @@ import { SessionService } from "./session.service";
 
 import "rxjs/add/operator/toPromise";
 import { User } from "../model/user";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class AuthService {
@@ -14,10 +15,11 @@ export class AuthService {
         private router: Router,
         private http: Http,
         private sessionService: SessionService,
+        private userService: UserService,
         private httpService: HttpService
     ) {}
 
-    login(username: string, password: string): Promise<string> {
+    login(username: string, password: string): Promise<User> {
         let payload: any = {
             username: username,
             password: password
@@ -27,15 +29,12 @@ export class AuthService {
                 .then(res => {
                     let jwt: string = res.text();
                     this.sessionService.saveJwt(jwt);
-                    return jwt;
-                    /*
-                    return this.personService.me()
+                    return this.userService.getMe()
                     .then(user => {
                         this.sessionService.saveUser(user);
                         return user;
                     })
                     .catch();
-                    */
                 })
                 .catch(error => {
                     throw this.httpService.handleError(error);
