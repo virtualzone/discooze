@@ -5,7 +5,7 @@ COPY frontend/ /usr/src/app/
 RUN npm install && \
     npm run build
 
-FROM openjdk:9-jdk-slim
+FROM openjdk:8-jdk-alpine
 RUN mkdir -p /opt/discooze/static
 WORKDIR /opt/discooze
 COPY backend/target/*.jar /opt/discooze/
