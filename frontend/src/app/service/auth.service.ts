@@ -30,11 +30,11 @@ export class AuthService {
                     let jwt: string = res.text();
                     this.sessionService.saveJwt(jwt);
                     return this.userService.getMe()
-                    .then(user => {
-                        this.sessionService.saveUser(user);
-                        return user;
-                    })
-                    .catch();
+                        .then(user => {
+                            this.sessionService.saveUser(user);
+                            return user;
+                        })
+                        .catch();
                 })
                 .catch(error => {
                     throw this.httpService.handleError(error);

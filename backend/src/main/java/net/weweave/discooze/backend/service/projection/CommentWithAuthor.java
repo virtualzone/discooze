@@ -8,4 +8,5 @@ import org.springframework.data.rest.core.config.Projection;
 public interface CommentWithAuthor extends AbstractProjection {
     User getAuthor();
     String getText();
+    Boolean getHasAttachment();
 }

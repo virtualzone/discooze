@@ -6,6 +6,7 @@ export class Comment extends RestModel<Comment> {
     panel: Panel;
     author: User;
     text: string;
+    hasAttachment: boolean;
 
     serialize(): Object {
         return Object.assign(super.serialize(), {
@@ -20,6 +21,7 @@ export class Comment extends RestModel<Comment> {
         this.panel = input.panel ? new Panel().deserialize(input.panel) : null;
         this.author = input.author ? new User().deserialize(input.author) : null;
         this.text = input.text;
+        this.hasAttachment = input.hasAttachment;
         return this;
     }
 }

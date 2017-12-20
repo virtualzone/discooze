@@ -12,6 +12,6 @@ import java.util.UUID;
 
 @RepositoryRestResource(excerptProjection = CommentWithAuthor.class)
 public interface CommentRepository extends PagingAndSortingRepository<Comment, UUID> {
-    @Query("SELECT c FROM Comment c WHERE c.panel.id = :id")
+    @Query("SELECT c FROM Comment c WHERE c.panel.id = :id ORDER BY c.created DESC")
     List<Comment> findByPanelId(@Param("id") UUID id);
 }

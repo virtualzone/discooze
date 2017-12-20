@@ -15,6 +15,8 @@ public class Comment extends AbstractPersistentObject {
     @Column(nullable = false, length = 5000)
     private String text;
 
+    private Boolean hasAttachment = false;
+
     public Panel getPanel() {
         return panel;
     }
@@ -37,5 +39,13 @@ public class Comment extends AbstractPersistentObject {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Boolean getHasAttachment() {
+        return hasAttachment;
+    }
+
+    public void setHasAttachment(Boolean hasAttachment) {
+        this.hasAttachment = hasAttachment;
     }
 }

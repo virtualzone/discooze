@@ -7,6 +7,8 @@ import net.weweave.discooze.backend.service.CommentRepository;
 import net.weweave.discooze.backend.service.PanelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
+import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +27,9 @@ public class CommentController extends BaseController {
     @Autowired
     private PanelRepository panelRepository;
 
+    @Autowired
+    private EntityLinks entityLinks;
+
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(method = RequestMethod.POST, value = "/comments/publish")
     public ResponseEntity<Resource<Comment>> publish(@RequestBody CommentPublishRequest body, Principal principal) {
@@ -37,7 +42,9 @@ public class CommentController extends BaseController {
         comment.setAuthor(this.getRequestUser(principal));
         comment.setPanel(panel);
         comment = this.commentRepository.save(comment);
+        Link selfLink = this.entityLinks.linkFor(Comment.class).slash(comment.getId()).withSelfRel();
         Resource<Comment> result = new Resource<>(comment);
+        result.add(selfLink);
         return ResponseEntity.ok(result);
     }
 }

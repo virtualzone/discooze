@@ -78,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/auth/**",
                         "/users/search/me",
+                        "/attachments/get/**",
                         "/panels",
                         "/panels/**",
                         "/comments",

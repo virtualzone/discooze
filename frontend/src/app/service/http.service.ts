@@ -11,9 +11,9 @@ export class HttpService {
         private sessionService: SessionService
     ) {
         if (location.hostname === "localhost") {
-            this.restUrl = "http://localhost:8080/";
+            this.restUrl = "http://localhost:8080/api/";
         } else {
-            this.restUrl = "/";
+            this.restUrl = "/api/";
         }
     }
 

@@ -1,49 +1,98 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { DomSanitizer } from "@angular/platform-browser";
 import { PanelService } from "../service/panel.service";
 import { Panel } from "../model/panel";
 import { Comment } from "../model/comment";
 import { CommentService } from "../service/comment.service";
 import { User } from "../model/user";
 import { UserService } from "../service/user.service";
+import { SessionService } from "../service/session.service";
+import { AuthService } from "../service/auth.service";
 
 @Component({
     templateUrl: "./panel.component.html",
     providers: [
         PanelService,
         CommentService,
-        UserService
+        UserService,
+        AuthService
     ]
 })
 export class PanelComponent implements OnInit {
     panel: Panel = null;
     comments: Comment[];
     errorLoading: boolean = false;
-    comment: Comment = new Comment();
+    submitting: boolean = false;
+    success: boolean = false;
+    authError: boolean = false;
+    text: string = "";
+    username: string = "";
+    password: string = "";
+    requirePassword: boolean = false;
+    file = null;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private panelService: PanelService,
         private commentService: CommentService,
-        private userService: UserService
+        private userService: UserService,
+        private sessionService: SessionService,
+        private authService: AuthService,
+        private sanitizer: DomSanitizer
     ) {
-        this.comment.author = new User();
         // TOOD REmove debug code
-        this.comment.text = "Das ist ein Test";
-        this.comment.author.username = "admin";
+        this.text = "Das ist ein Test";
+        this.username = "admin";
     }
 
     submit(): void {
-        // Load user
-        this.userService.getUserByUsername(this.comment.author.username)
-            .then(user => {
-                this.comment.author = user;
-                this.commentService.save(this.comment)
-                    .then(comment => alert(comment.id))
-                    .catch(e => alert("could not save comment"));
-            })
-            .catch(e => alert("No such user!"));
+        this.submitting = true;
+        if (!this.sessionService.isLoggedIn) {
+            this.authService.login(this.username, this.password)
+                .then(user => this.publishComment())
+                .catch(e => {
+                    if (e.status === 400) {
+                        this.requirePassword = true;
+                        this.submitting = false;
+                        setTimeout(() => document.getElementById("password").focus(), 50);
+                    } else if (e.status === 401) {
+                        this.submitting = false;
+                        this.authError = true;
+                        setTimeout(() => document.getElementById("password").focus(), 50);
+                    } else if (e.status === 404) {
+                        this.submitting = false;
+                        this.authError = true;
+                        setTimeout(() => document.getElementById("username").focus(), 50);
+                    }
+                });
+        } else {
+            this.publishComment();
+        }
+    }
+
+    fileChange(event): void {
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            this.file = fileList[0];
+        }
+    }
+
+    private publishComment(): void {
+        this.commentService.publish(this.panel.id, this.text)
+            .then(comment => {
+                if (this.file) {
+                    this.commentService.uploadAttachment(this.file, comment.id)
+                        .then(attachmentId => {
+                            this.loadComments()
+                            this.success = true;
+                        });
+                } else {
+                    this.loadComments()
+                    this.success = true;
+                }
+            });
     }
 
     ngOnInit(): void {
@@ -68,7 +117,11 @@ export class PanelComponent implements OnInit {
 
     private onPanelLoaded(panel: Panel): void {
         this.panel = panel;
-        this.commentService.getCommentsForPanel(panel.id)
+        this.loadComments();
+    }
+
+    private loadComments(): void {
+        this.commentService.getCommentsForPanel(this.panel.id)
             .then(comments => this.comments = comments);
     }
 }
