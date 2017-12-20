@@ -13,11 +13,13 @@
             '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+            '@angular/common/http': 'npm:@angular/common/bundles/common-http.umd.js',
+            '@ngx-translate/core': 'npm:@ngx-translate/core/bundles/core.umd.js',
+            '@ngx-translate/http-loader': 'npm:@ngx-translate/http-loader/bundles/http-loader.umd.js',
             'rxjs': 'npm:rxjs',
+            'tslib': 'npm:tslib/tslib.js',
             'moment': 'npm:moment/moment.js',
             'jquery': 'npm:jquery/dist/jquery.min.js',
-            'typeahead.js': 'npm:typeahead.js/dist/typeahead.jquery.min.js',
-            'bloodhound': 'npm:typeahead.js/dist/bloodhound.min.js',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api'
         },
         packages: {

@@ -3,6 +3,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HttpModule }    from "@angular/http";
 import { RouterModule, Router, NavigationStart, NavigationEnd } from "@angular/router";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
+
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import { routing } from "./app.routing";
 
@@ -21,12 +25,24 @@ import { UserListComponent } from "./component/user-list.component";
 import { UserEditComponent } from "./component/user-edit.component";
 import { SettingsComponent } from "./component/settings.component";
 
+export function createTranslateLoader(http: HttpClient) {
+    return new TranslateHttpLoader(http, "./i18n/", ".json");
+}
+
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
+        HttpClientModule,
         RouterModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient]
+            }
+        }),
         routing
     ],
     declarations: [

@@ -11,8 +11,8 @@
         <div>
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Your comment</h4>
-                    <div class="alert alert-success" role="alert" [hidden]="!success">Your comment has been published.</div>
+                    <h4 class="card-title">{{ 'PANEL.YOUR_COMMENT' | translate }}</h4>
+                    <div class="alert alert-success" role="alert" [hidden]="!success">{{ 'PANEL.COMMENT_PUBLISHED' | translate }}</div>
                     <form (ngSubmit)="submit()" #form="ngForm" [hidden]="success">
                         <div class="form-group">
                             <textarea class="form-control" name="text" id="text" required="required" [(ngModel)]="text"></textarea>
@@ -21,7 +21,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="material-icons">add_a_photo</i></span>
                                 <label class="custom-file">
-                                    <input type="file" id="file" class="custom-file-input" accept="image/*" placeholder="Upload photo" (change)="fileChange($event)" />
+                                    <input type="file" id="file" class="custom-file-input" accept="image/*" placeholder="{{ 'PANEL.PLACEHOLDER_UPLOAD' | translate }}" (change)="fileChange($event)" />
                                     <span class="custom-file-control"></span>
                                 </label>
                             </div>
@@ -35,18 +35,18 @@
                         <div class="form-group" *ngIf="!sessionService.isLoggedIn">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="material-icons">face</i></div>
-                                <input type="text" id="username" name="username" placeholder="Username" class="form-control" [(ngModel)]="username" required="required" />
+                                <input type="text" id="username" name="username" placeholder="{{ 'PANEL.PLACEHOLDER_USER' | translate }}" class="form-control" [(ngModel)]="username" required="required" />
                             </div>
-                            <small class="form-text text-danger" *ngIf="authError">Invalid username or password.</small>
+                            <small class="form-text text-danger" *ngIf="authError">{{ 'PANEL.INVALID_USER_PASS' | translate }}</small>
                         </div>
                         <div class="form-group" *ngIf="!sessionService.isLoggedIn && requirePassword">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="material-icons">vpn_key</i></div>
-                                <input type="password" id="password" name="password" placeholder="Password" class="form-control" [(ngModel)]="password" />
+                                <input type="password" id="password" name="password" placeholder="{{ 'PANEL.PLACEHOLDER_PASS' | translate }}" class="form-control" [(ngModel)]="password" />
                             </div>
-                            <small class="form-text text-muted">Your password is required to log you in.</small>
+                            <small class="form-text text-muted">{{ 'PANEL.PASSWORD_REQUIRED' | translate }}</small>
                         </div>
-                        <button type="submit" class="btn btn-primary" [disabled]="!form.valid || submitting">Submit</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="!form.valid || submitting">{{ 'PANEL.SUBMIT_COMMENT' | translate }}</button>
                     </form>
                 </div>
             </div>
@@ -64,12 +64,12 @@
         <div *ngIf="!comments || !comments.length">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">No comments yet.</h4>
-                    <p class="card-text">Go ahead and be the first to publish a comment here.</p>
+                    <h4 class="card-title">{{ 'PANEL.NO_COMMENTS' | translate }}</h4>
+                    <p class="card-text">{{ 'PANEL.PUBLISH_COMMENT_TEASER' | translate }}</p>
                 </div>
             </div>
         </div>
     </div>
 <div *ngIf="errorLoading">
-    Could not resolve requested panel.
+    {{ 'PANEL.PANEL_NOT_FOUND' | translate }}
 </div>

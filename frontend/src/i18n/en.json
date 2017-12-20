@@ -1,0 +1,15 @@
+{
+    "PANEL": {
+        "YOUR_COMMENT": "Your comment",
+        "COMMENT_PUBLISHED": "Your comment has been published.",
+        "INVALID_USER_PASS": "Invalid username or password.",
+        "PASSWORD_REQUIRED": "Your password is required to log you in.",
+        "PANEL_NOT_FOUND": "Could not resolve requested panel.",
+        "NO_COMMENTS": "No comments yet.",
+        "PUBLISH_COMMENT_TEASER": "Go ahead and be the first to publish a comment here.",
+        "SUBMIT_COMMENT": "Submit",
+        "PLACEHOLDER_UPLOAD": "Upload photo",
+        "PLACEHOLDER_USER": "Username",
+        "PLACEHOLDER_PASS": "Password"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "PANEL": {
+        "YOUR_COMMENT": "Ihr Kommentar",
+        "COMMENT_PUBLISHED": "Ihr Kommentar wurde veröffentlicht.",
+        "INVALID_USER_PASS": "Ungültiger Benutzername oder Kennwort.",
+        "PASSWORD_REQUIRED": "Ihr Kennwort ist Anmeldung erforderlich.",
+        "PANEL_NOT_FOUND": "Angefordertes Panel konnte nicht gefunden werden.",
+        "NO_COMMENTS": "Noch keine Kommentare.",
+        "PUBLISH_COMMENT_TEASER": "Schreiben Sie den ersten Kommentar!",
+        "SUBMIT_COMMENT": "Absenden",
+        "PLACEHOLDER_UPLOAD": "Foto hochladen",
+        "PLACEHOLDER_USER": "Benutzername",
+        "PLACEHOLDER_PASS": "Kennwort"
+    }
+}

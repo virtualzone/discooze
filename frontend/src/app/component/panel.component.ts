@@ -41,11 +41,7 @@ export class PanelComponent implements OnInit {
         private sessionService: SessionService,
         private authService: AuthService,
         private sanitizer: DomSanitizer
-    ) {
-        // TOOD REmove debug code
-        this.text = "Das ist ein Test";
-        this.username = "admin";
-    }
+    ) {}
 
     submit(): void {
         this.submitting = true;
