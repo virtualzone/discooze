@@ -13,5 +13,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, UUID> {
     @Query("SELECT u FROM User u WHERE u.roleAdmin = TRUE ORDER BY u.created ASC")
     User firstAdmin();
 
+    @Query("SELECT u FROM User u WHERE lower(u.username) = lower(:username)")
     User findByUsername(@Param("username") String username);
 }
