@@ -11,7 +11,7 @@
     "clean": "rm -rf dist/",
     "grunt": "grunt",
     "webpack": "webpack --config webpack.prod.js --progress --profile --bail",
-    "build": "npm run grunt && npm run webpack && cp src/index.prod.html dist/index.html && cp -R src/i18n dist/"
+    "build": "npm run grunt && npm run webpack && cp src/index.prod.html dist/index.html && cp -R src/i18n dist/ && cp -R src/img dist/"
   },
   "author": "weweave GbR <mail@weweave.net>",
   "license": "GPL-3.0",
