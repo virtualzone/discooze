@@ -53,7 +53,7 @@
         </div>
         <div *ngFor="let comment of comments">
             <div class="card">
-                <img class="card-img-top" [src]="commentService.getAttachmentUrl(comment.id)" *ngIf="comment.hasAttachment" />
+                <img class="card-img-top h-100" [src]="commentService.getAttachmentUrl(comment.id)" *ngIf="comment.hasAttachment" />
                 <div class="card-body">
                     <h4 class="card-title">{{comment.author.displayName}}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">{{comment.created}}</h6>
