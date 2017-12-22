@@ -25,5 +25,4 @@ jwt:
 
 comment:
   image:
-    maxUploadBytes: 5242880
     maxDimension: 640
