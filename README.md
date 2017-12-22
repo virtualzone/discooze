@@ -22,6 +22,11 @@ Publish panels (text, HTML, video, image) and let users discuss it.
    ```
 1. Open your web browser and go to: http://localhost:8080
 
+## Administration
+The administration interface is available at: http://localhost:8080/_admin
+
+Log in with admin/admin.
+
 ## Technology
 Discooze is based on the following technologies and frameworks:
 * Backend: Spring Boot, Spring Data REST
