@@ -10,10 +10,11 @@ export class HttpService {
     constructor(
         private sessionService: SessionService
     ) {
+        let baseHref = document.getElementsByTagName("base")[0].getAttribute("href");
         if (location.port === "3001") {
-            this.restUrl = "http://" + location.hostname + ":8080/api/";
+            this.restUrl = "http://" + location.hostname + ":8080" + baseHref + "api/";
         } else {
-            this.restUrl = "/api/";
+            this.restUrl = baseHref + "api/";
         }
     }
 

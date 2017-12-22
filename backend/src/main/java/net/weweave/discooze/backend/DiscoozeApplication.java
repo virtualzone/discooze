@@ -5,23 +5,16 @@ import net.weweave.discooze.backend.service.CommentRepository;
 import net.weweave.discooze.backend.service.PanelRepository;
 import net.weweave.discooze.backend.service.SystemSettingRepository;
 import net.weweave.discooze.backend.service.UserRepository;
+import net.weweave.discooze.backend.util.AppErrorController;
 import net.weweave.discooze.backend.util.AutowireHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
-import java.util.Map;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -101,14 +94,8 @@ public class DiscoozeApplication {
     }
 
     @Bean
-    public ErrorViewResolver angularRouter() {
-        return (HttpServletRequest request, HttpStatus status, Map<String, Object> model) -> {
-            System.out.println("Resolving for " + request.getRequestURI());
-            if (status == HttpStatus.NOT_FOUND) {
-                return new ModelAndView("index.html", Collections.emptyMap(), HttpStatus.OK);
-            } else {
-                return null;
-            }
-        };
+    public AppErrorController appErrorController(){
+        return new AppErrorController();
     }
+
 }

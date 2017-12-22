@@ -26,3 +26,6 @@ jwt:
 comment:
   image:
     maxDimension: 640
+
+proxy:
+  public-base-path: /
