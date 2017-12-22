@@ -7,6 +7,10 @@ spring:
       basePath: /api
   jpa:
     generate-ddl: true
+  http:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
   datasource:
     url: jdbc:postgresql://postgres/discooze
     username: postgres
@@ -16,5 +20,10 @@ jwt:
   header: Authorization
   prefix: Bearer
   secret: bLFAxAFuVczLghCbUb8JfbRq
-  expiration: 604800
+  expiration: 86400
   allowNoPassword: true
+
+comment:
+  image:
+    maxUploadBytes: 5242880
+    maxDimension: 640
