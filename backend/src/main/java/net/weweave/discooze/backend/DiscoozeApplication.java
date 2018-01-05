@@ -48,11 +48,12 @@ public class DiscoozeApplication {
         Panel panel = new Panel();
         panel.setTitle("Default");
         panel.setUrl("/");
-        panel.setType(PanelType.TEXT);
+        panel.setType(PanelType.HTML);
         panel.setHeadline("Welcome to Discooze");
-        panel.setContent("Your Discooze installation is up and running.\n" +
-                "You can go to the admin panel at /_admin/ now to set up your panels.");
-        panel.setFooter("&copy; 2017 weweave.");
+        panel.setContent("Your Discooze installation is up and running.<br /><br />\n" +
+                "You should now log in to the <a href=\"./_admin/\">admin interface</a>, change the admin password and set up your panels.<br /><br />\n" +
+                "For more information, visit the <a href=\"https://github.com/weweave/discooze\" target=\"_blank\">GitHub project page</a>.");
+        panel.setFooter("");
         panel = panelRepository.save(panel);
         return panel;
     }
