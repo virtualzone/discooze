@@ -9,6 +9,8 @@
         "experimentalDecorators": true,
         "removeComments": false,
         "noImplicitAny": false,
+        "emitBOM": true,
+        "charset": "utf8",
         "lib": [
            "es6",
            "dom"
