@@ -5,7 +5,6 @@ import net.weweave.discooze.backend.service.CommentRepository;
 import net.weweave.discooze.backend.service.PanelRepository;
 import net.weweave.discooze.backend.service.SystemSettingRepository;
 import net.weweave.discooze.backend.service.UserRepository;
-import net.weweave.discooze.backend.util.AppErrorController;
 import net.weweave.discooze.backend.util.AutowireHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +14,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 @EnableJpaAuditing
 @Configuration
-public class DiscoozeApplication {
+public class DiscoozeApplication extends WebMvcConfigurerAdapter {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(DiscoozeApplication.class, args);
     }
@@ -94,9 +95,13 @@ public class DiscoozeApplication {
         return AutowireHelper.getInstance();
     }
 
-    @Bean
-    public AppErrorController appErrorController(){
-        return new AppErrorController();
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String[] CLASSPATH_RESOURCE_LOCATIONS = { "file:static/" };
+        registry.addResourceHandler("/app/**").addResourceLocations("file:static/app/");
+        registry.addResourceHandler("/css/**").addResourceLocations("file:static/css/");
+        registry.addResourceHandler("/i18n/**").addResourceLocations("file:static/i18n/");
+        registry.addResourceHandler("/img/**").addResourceLocations("file:static/img/");
     }
 
 }

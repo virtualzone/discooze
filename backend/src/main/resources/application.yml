@@ -5,6 +5,10 @@ spring:
   data:
     rest:
       basePath: /api
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
   jpa:
     generate-ddl: true
   http:
