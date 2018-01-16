@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from "@angular/platform-browser";
 import { PanelService } from "../service/panel.service";
@@ -17,7 +17,8 @@ import { AuthService } from "../service/auth.service";
         CommentService,
         UserService,
         AuthService
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PanelComponent implements OnInit {
     panel: Panel = null;
@@ -41,7 +42,8 @@ export class PanelComponent implements OnInit {
         private userService: UserService,
         private sessionService: SessionService,
         private authService: AuthService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private cd: ChangeDetectorRef
     ) {}
 
     submit(): void {
@@ -54,14 +56,17 @@ export class PanelComponent implements OnInit {
                         this.requirePassword = true;
                         this.submitting = false;
                         setTimeout(() => document.getElementById("password").focus(), 50);
+                        this.cd.detectChanges();
                     } else if (e.status === 401 || e.status === 500) {
                         this.submitting = false;
                         this.authError = true;
                         setTimeout(() => document.getElementById("password").focus(), 50);
+                        this.cd.detectChanges();
                     } else if (e.status === 404) {
                         this.submitting = false;
                         this.authError = true;
                         setTimeout(() => document.getElementById("username").focus(), 50);
+                        this.cd.detectChanges();
                     }
                 });
         } else {
@@ -112,8 +117,13 @@ export class PanelComponent implements OnInit {
         });
     }
 
+    trackCommentById(index: number, item: Comment): string {
+        return item.id;
+    }
+
     private onPanelLoaded(panel: Panel): void {
         this.panel = panel;
+        this.cd.detectChanges();
         this.loadComments();
     }
 
@@ -123,6 +133,7 @@ export class PanelComponent implements OnInit {
             .then(comments => {
                 this.comments = comments
                 this.commentsLoading = false;
+                this.cd.detectChanges();
             });
     }
 }

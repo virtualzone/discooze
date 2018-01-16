@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="let comment of comments">
+        <div *ngFor="let comment of comments; trackBy: trackCommentById">
             <div class="card">
                 <img class="card-img-top h-100" [src]="commentService.getAttachmentUrl(comment.id)" *ngIf="comment.hasAttachment" />
                 <div class="card-body">
