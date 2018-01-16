@@ -6,6 +6,7 @@
         "PASSWORD_REQUIRED": "Your password is required to log you in.",
         "PANEL_NOT_FOUND": "Could not resolve requested panel.",
         "NO_COMMENTS": "No comments yet.",
+        "LOADING_COMMENTS": "Loading comments...",
         "PUBLISH_COMMENT_TEASER": "Go ahead and be the first to publish a comment here.",
         "SUBMIT_COMMENT": "Submit",
         "PLACEHOLDER_UPLOAD": "Upload photo",

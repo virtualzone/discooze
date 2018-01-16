@@ -22,6 +22,7 @@ import { AuthService } from "../service/auth.service";
 export class PanelComponent implements OnInit {
     panel: Panel = null;
     comments: Comment[];
+    commentsLoading: boolean = true;
     errorLoading: boolean = false;
     submitting: boolean = false;
     success: boolean = false;
@@ -53,7 +54,7 @@ export class PanelComponent implements OnInit {
                         this.requirePassword = true;
                         this.submitting = false;
                         setTimeout(() => document.getElementById("password").focus(), 50);
-                    } else if (e.status === 401) {
+                    } else if (e.status === 401 || e.status === 500) {
                         this.submitting = false;
                         this.authError = true;
                         setTimeout(() => document.getElementById("password").focus(), 50);
@@ -117,7 +118,11 @@ export class PanelComponent implements OnInit {
     }
 
     private loadComments(): void {
+        this.commentsLoading = true;
         this.commentService.getCommentsForPanel(this.panel.id)
-            .then(comments => this.comments = comments);
+            .then(comments => {
+                this.comments = comments
+                this.commentsLoading = false;
+            });
     }
 }

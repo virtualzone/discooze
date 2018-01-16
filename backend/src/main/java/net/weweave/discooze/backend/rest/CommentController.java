@@ -6,6 +6,7 @@ import net.weweave.discooze.backend.rest.request.CommentPublishRequest;
 import net.weweave.discooze.backend.service.CommentRepository;
 import net.weweave.discooze.backend.service.PanelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.hateoas.Link;
@@ -32,6 +33,7 @@ public class CommentController extends BaseController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(method = RequestMethod.POST, value = "/comments/publish")
+    @CacheEvict(value = "commentByPanelId", allEntries = true)
     public ResponseEntity<Resource<Comment>> publish(@RequestBody CommentPublishRequest body, Principal principal) {
         Panel panel = this.panelRepository.findOne(UUID.fromString(body.getPanelId()));
         if (panel == null) {

@@ -6,6 +6,7 @@
         "PASSWORD_REQUIRED": "Ihr Kennwort ist Anmeldung erforderlich.",
         "PANEL_NOT_FOUND": "Angefordertes Panel konnte nicht gefunden werden.",
         "NO_COMMENTS": "Noch keine Kommentare.",
+        "LOADING_COMMENTS": "Kommentare werden geladen...",
         "PUBLISH_COMMENT_TEASER": "Schreiben Sie den ersten Kommentar!",
         "SUBMIT_COMMENT": "Absenden",
         "PLACEHOLDER_UPLOAD": "Foto hochladen",
