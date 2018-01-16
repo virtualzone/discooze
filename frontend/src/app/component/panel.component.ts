@@ -131,7 +131,7 @@ export class PanelComponent implements OnInit {
         this.commentsLoading = true;
         this.commentService.getCommentsForPanel(this.panel.id)
             .then(comments => {
-                this.comments = comments
+                this.comments = comments;
                 this.commentsLoading = false;
                 this.cd.detectChanges();
             });
